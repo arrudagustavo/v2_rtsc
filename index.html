@@ -237,30 +237,52 @@
                     </video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
-                <!-- ATUALIZADO: sm:grid-cols-2 empilha para 1 coluna no mobile (390px), correto. -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
-                    <!-- ATUALIZADO: Padding p-6 é OK no mobile. -->
+                
+                <!-- ATUALIZADO: Grid de 4 cards agora é OCULTA no mobile (hidden) e visível no desktop (lg:grid) -->
+                <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
+                    <!-- Card 1 -->
                     <div class="bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 rounded-lg p-6 transition-all duration-300 animate-fade-in-up flex flex-col justify-center shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-gold/30">
                         <!-- ATUALIZADO: Fonte reduzida no mobile (text-lg) -->
                         <h3 class="text-lg sm:text-xl text-accent-gold font-bold mb-2">Quem Somos</h3>
                         <p class="text-sm text-text-gray">Uma holding que reúne empresas atuantes em diversas áreas, com foco no turismo.</p>
                     </div>
+                    <!-- Card 2 -->
                     <div class="bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 rounded-lg p-6 transition-all duration-300 animate-fade-in-up delay-100 flex flex-col justify-center shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-gold/30">
                         <!-- ATUALIZADO: Fonte reduzida no mobile (text-lg) -->
                         <h3 class="text-lg sm:text-xl text-accent-gold font-bold mb-2">Inovação</h3>
                         <p class="text-sm text-text-gray">Um hub de inovação, com vocação para acelerar negócios arrojados e transformadores.</p>
                     </div>
+                    <!-- Card 3 -->
                     <div class="bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 rounded-lg p-6 transition-all duration-300 animate-fade-in-up delay-200 flex flex-col justify-center shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-gold/30">
                         <!-- ATUALIZADO: Fonte reduzida no mobile (text-lg) -->
                         <h3 class="text-lg sm:text-xl text-accent-gold font-bold mb-2">Empreendedor</h3>
                         <p class="text-sm text-text-gray">Um grupo empreendedor pioneiro, desbravador, versátil, sempre em busca dos melhores resultados.</p>
                     </div>
+                    <!-- Card 4 -->
                     <div class="bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 rounded-lg p-6 transition-all duration-300 animate-fade-in-up delay-300 flex flex-col justify-center shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-gold/30">
                         <!-- ATUALIZADO: Fonte reduzida no mobile (text-lg) -->
                         <h3 class="text-lg sm:text-xl text-accent-gold font-bold mb-2">Gestão</h3>
                         <p class="text-sm text-text-gray">Uma gestora de novos negócios, com foco na transparência e na segurança.</p>
                     </div>
                 </div>
+
+                <!-- ATUALIZADO: NOVO Carrossel - Visível no mobile (lg:hidden) -->
+                <div id="about-carousel-card" class="lg:hidden bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 p-6 rounded-xl min-h-[250px] flex flex-col justify-between animate-fade-in-up">
+                    <div>
+                        <!-- ATUALIZADO: Fonte reduzida no mobile (text-2xl) -->
+                        <h3 id="about-carousel-title" class="text-2xl font-bold text-accent-gold mb-6">Carregando...</h3>
+                        <!-- ATUALIZADO: Fonte reduzida no mobile (text-base) -->
+                        <p id="about-carousel-desc" class="text-base text-text-gray">Carregando...</p>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-8">
+                        <button id="about-carousel-prev" class="carousel-button" aria-label="Slide anterior">←</button>
+                        <div id="about-carousel-indicators" class="flex gap-2">
+                        </div>
+                        <button id="about-carousel-next" class="carousel-button" aria-label="Próximo slide">→</button>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -436,9 +458,9 @@
         <p class="text-sm text-text-gray">&copy; 2025 RTSC - Premium Real Estate Investment Group. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- ATUALIZADO: Script revertido para a lógica do Carrossel -->
+    <!-- ATUALIZADO: Script dividido em dois carrosséis -->
     <script>
-        // Dados para o carrossel "Áreas de Atuação"
+        // --- Dados para o carrossel "Áreas de Atuação" ---
         const areas = [
             {
                 title: "Private Equity",
@@ -461,9 +483,18 @@
                 desc: "Nossa atuação é ampla. O portfólio de empresas investidas inclui muitos outros segmentos atrelados ao universo imobiliário e do turismo."
             }
         ];
-
         let carouselIndex = 0;
 
+        // --- ATUALIZADO: Dados para o carrossel "Sobre a RTSC" ---
+        const aboutCards = [
+            { title: "Quem Somos", desc: "Uma holding que reúne empresas atuantes em diversas áreas, com foco no turismo." },
+            { title: "Inovação", desc: "Um hub de inovação, com vocação para acelerar negócios arrojados e transformadores." },
+            { title: "Empreendedor", desc: "Um grupo empreendedor pioneiro, desbravador, versátil, sempre em busca dos melhores resultados." },
+            { title: "Gestão", desc: "Uma gestora de novos negócios, com foco na transparência e na segurança." }
+        ];
+        let aboutCarouselIndex = 0;
+
+        // --- Funções do Carrossel "Áreas de Atuação" ---
         function updateCarousel() {
             // Proteção
             if (!areas[carouselIndex]) return;
@@ -473,26 +504,22 @@
             const descEl = document.getElementById('carousel-desc');
             const indicatorsEl = document.getElementById('carousel-indicators');
 
-            // CORRIGIDO: Adicionada verificação de segurança extra
             if (!card || !titleEl || !descEl || !indicatorsEl) {
-                console.error("Elementos do carrossel não encontrados. Verifique os IDs HTML.");
+                // Não loga erro, pois o outro carrossel pode estar ativo
                 return;
             }
 
-            // ATUALIZADO: Lógica de transição de vídeo
-            // 1. Esconde (muda opacidade) de todos os vídeos
+            // Lógica de transição de vídeo
             const allVideos = document.querySelectorAll('.area-video');
             allVideos.forEach((video, index) => {
                 if (index === carouselIndex) {
-                    // 2. Mostra (muda opacidade) apenas o vídeo correspondente ao índice
                     video.classList.remove('opacity-0');
                     video.classList.add('opacity-100');
-                    video.play(); // Garante que o vídeo toque
+                    video.play(); 
                 } else {
-                    // 3. Esconde e PAUSA os outros vídeos
                     video.classList.remove('opacity-100');
                     video.classList.add('opacity-0');
-                    video.pause(); // Otimização de performance
+                    video.pause(); 
                 }
             });
 
@@ -525,23 +552,74 @@
             updateCarousel();
         }
 
+        // --- ATUALIZADO: Funções do Carrossel "Sobre a RTSC" ---
+        function updateAboutCarousel() {
+            if (!aboutCards[aboutCarouselIndex]) return;
+
+            const card = document.getElementById('about-carousel-card');
+            const titleEl = document.getElementById('about-carousel-title');
+            const descEl = document.getElementById('about-carousel-desc');
+            const indicatorsEl = document.getElementById('about-carousel-indicators');
+
+            if (!card || !titleEl || !descEl || !indicatorsEl) {
+                // Não loga erro, pois o outro carrossel pode estar ativo
+                return;
+            }
+
+            // Atualiza o conteúdo de texto
+            titleEl.textContent = aboutCards[aboutCarouselIndex].title;
+            descEl.textContent = aboutCards[aboutCarouselIndex].desc;
+
+            // Atualiza os indicadores
+            indicatorsEl.innerHTML = ''; // Limpa indicadores antigos
+            aboutCards.forEach((_, i) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator' + (i === aboutCarouselIndex ? ' active' : '');
+                indicatorsEl.appendChild(indicator);
+            });
+
+            // Adiciona animação de fade-in
+            card.style.animation = 'none'; // Reseta animação
+            setTimeout(() => {
+                card.style.animation = 'fadeInUp 0.8s ease-out';
+            }, 10);
+        }
+
+        function nextAboutCarousel() {
+            aboutCarouselIndex = (aboutCarouselIndex + 1) % aboutCards.length;
+            updateAboutCarousel();
+        }
+
+        function prevAboutCarousel() {
+            aboutCarouselIndex = (aboutCarouselIndex - 1 + aboutCards.length) % aboutCards.length;
+            updateAboutCarousel();
+        }
+
+
         // Inicializa a seção quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', () => {
-            // CORRIGIDO: Seletores de botão agora são seguros
-            const prevButton = document.getElementById('carousel-prev');
-            const nextButton = document.getElementById('carousel-next');
             
-            // Verifica se estamos na seção "Áreas de Atuação" (pelos botões)
-            if (prevButton && nextButton) {
-                updateCarousel(); // Define o estado inicial (mostrará o vídeo 0 e o texto 0)
+            // --- Inicializador do Carrossel "Áreas de Atuação" ---
+            const prevAreaButton = document.getElementById('carousel-prev');
+            const nextAreaButton = document.getElementById('carousel-next');
+            
+            if (prevAreaButton && nextAreaButton) {
+                updateCarousel(); // Define o estado inicial
+                prevAreaButton.onclick = prevCarousel;
+                nextAreaButton.onclick = nextCarousel;
+            }
 
-                // Adiciona listeners aos botões
-                prevButton.onclick = prevCarousel;
-                nextButton.onclick = nextCarousel;
+            // --- ATUALIZADO: Inicializador do Carrossel "Sobre a RTSC" ---
+            const prevAboutButton = document.getElementById('about-carousel-prev');
+            const nextAboutButton = document.getElementById('about-carousel-next');
+            
+            if (prevAboutButton && nextAboutButton) {
+                updateAboutCarousel(); // Define o estado inicial
+                prevAboutButton.onclick = prevAboutCarousel;
+                nextAboutButton.onclick = nextAboutCarousel;
             }
         });
     </script>
 </body>
 </html>
-
 
