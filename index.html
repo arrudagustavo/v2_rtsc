@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-RTSC - Website:RTSC_Website.html8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RTSC - Premium Real Estate Investment Group</title>
     <!-- Inclusão do Tailwind CSS -->
@@ -146,8 +146,9 @@
     <div class="bg-geometric bg-geometric-4"></div>
 
     <!-- ======= Header ======= -->
-    <!-- ATUALIZADO: Removida a classe bg-primary-bg/80 -->
-    <header class="sticky top-0 z-50 backdrop-blur-sm border-b border-border-gray">
+    <!-- ATUALIZADO: Header movido para FORA da section -->
+    <!-- ATUALIZADO: Adicionado 'sticky top-0 z-30' para fixar no topo -->
+    <header class="sticky top-0 z-30 backdrop-blur-sm border-b border-border-gray">
         <!-- ATUALIZADO: Layout do header alterado para flex-col no mobile (abaixo de md:) -->
         <div class="container mx-auto max-w-7xl px-4 py-4 flex flex-col items-center md:flex-row md:justify-between">
             <img src="https://d335luupugsy2.cloudfront.net/cms/files/691549/1693434942/$20c7zqr5hod" alt="RTSC Logo" class="h-12 w-auto">
@@ -162,38 +163,44 @@
         </div>
     </header>
 
-    <main class="relative z-20">
+    <!-- ======= Hero Section ======= -->
+    <!-- ATUALIZADO: Trocado 'sticky top-0' por 'fixed inset-0' para travar totalmente a seção. -->
+    <section class="fixed inset-0 h-screen z-10 animate-fade-in overflow-hidden">
+        
+        <!-- Vídeo de Fundo -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-1]">
+            <source src="imagens/Recepção (1).mp4" type="video/mp4">
+        </video>
+        <!-- Overlay Base (o que já existia) -->
+        <div class="absolute inset-0 bg-primary-bg/50 z-0"></div>
+        <!-- ATUALIZADO: Nova Máscara para o efeito de scroll (começa 100% transparente) -->
+        <!-- ATUALIZADO: z-index aumentado para 10 -->
+        <div id="hero-scroll-mask" class="absolute inset-0 bg-primary-bg z-10" style="opacity: 0;"></div>
 
-        <!-- ======= Hero Section ======= -->
-        <!-- ATUALIZADO: Margem e Padding ajustados para o novo header mobile -->
-        <!-- -mt-28 (7rem) no mobile (header ~112px), -mt-20 (5rem) no desktop (header 80px) -->
-        <!-- pt-40 no mobile, md:pt-68 no desktop -->
-        <section class="relative pt-40 pb-24 md:pt-68 md:pb-48 -mt-28 md:-mt-20 px-4 animate-fade-in overflow-hidden min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center items-center text-center">
-            <!-- Vídeo de Fundo -->
-            <!-- ATUALIZADO: Caminho do vídeo -->
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-1]">
-                <source src="imagens/Recepção (1).mp4" type="video/mp4">
-            </video>
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-primary-bg/50 z-0"></div>
+        <!-- Conteúdo -->
+        <!-- ATUALIZADO: Adicionado ID 'hero-text-content' -->
+        <!-- ATUALIZADO: Adicionado 'flex flex-col justify-center items-center text-center' para centralizar o conteúdo na 'célula' restante -->
+        <!-- ATUALIZADO: z-index do texto diminuído para 5 -->
+        <div id="hero-text-content" class="relative z-5 container mx-auto max-w-7xl px-4 h-full flex flex-col justify-center items-center text-center">
+            <!-- ATUALIZADO: Fonte reduzida no mobile (text-3xl) -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-8">
+                <span>Somos uma holding com foco no </span>
+                <span class="gradient-text">desenvolvimento do setor Imobiliário</span>
+                <span> e do Turismo no Brasil.</span>
+            </h1>
+            <!-- ATUALIZADO: Fonte reduzida no mobile (text-base) -->
+            <p class="text-base md:text-lg text-text-gray max-w-2xl mb-12 mx-auto">Uma holding que reúne empresas atuantes em diversas áreas, com foco no turismo.</p>
+            <!-- ATUALIZADO: Padding do botão reduzido no mobile -->
+            <button class="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-accent-gold-dark to-accent-gold text-black font-bold rounded-full cursor-pointer transition-all duration-300 hover:scale-105">
+                CONHEÇA A RTSC
+            </button>
+        </div>
+    </section>
 
-            <!-- Conteúdo -->
-            <div class="relative z-10 container mx-auto max-w-7xl px-4">
-                <!-- ATUALIZADO: Fonte reduzida no mobile (text-3xl) -->
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-8">
-                    <span>Somos uma holding com foco no </span>
-                    <span class="gradient-text">desenvolvimento do setor Imobiliário</span>
-                    <span> e do Turismo no Brasil.</span>
-                </h1>
-                <!-- ATUALIZADO: Fonte reduzida no mobile (text-base) -->
-                <p class="text-base md:text-lg text-text-gray max-w-2xl mb-12 mx-auto">Uma holding que reúne empresas atuantes em diversas áreas, com foco no turismo.</p>
-                <!-- ATUALIZADO: Padding do botão reduzido no mobile -->
-                <button class="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-accent-gold-dark to-accent-gold text-black font-bold rounded-full cursor-pointer transition-all duration-300 hover:scale-105">
-                    CONHEÇA A RTSC
-                </button>
-            </div>
-        </section>
-
+    <!-- ATUALIZADO: Main agora tem fundo opaco PARA COBRIR o vídeo ao rolar -->
+    <!-- E margin-top: 100vh para 'empurrar' o conteúdo para baixo da seção 'fixed' -->
+    <main class="relative z-20 bg-primary-bg" style="margin-top: 100vh;">
+        
         <!-- ======= History Section ======= -->
         <!-- ATUALIZADO: Padding da seção reduzido no mobile (py-16) -->
         <section class="container mx-auto max-w-7xl py-16 md:py-24 px-4">
@@ -230,7 +237,8 @@
 
             <!-- ATUALIZADO: layout lg:grid-cols-2 já empilha no mobile, correto. -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg animate-slide-in-left border-4 border-border-gray">
+                <!-- ATUALIZADO: Altura do vídeo reduzida para h-64 no mobile -->
+                <div class="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-lg animate-slide-in-left border-4 border-border-gray">
                     <!-- ATUALIZADO: Caminho do vídeo -->
                     <video class="w-full h-full object-cover object-top" autoplay muted loop playsinline>
                         <source src="imagens/Sobre a RTSC (1).mp4" type="video/mp4">
@@ -267,7 +275,8 @@
                 </div>
 
                 <!-- ATUALIZADO: NOVO Carrossel - Visível no mobile (lg:hidden) -->
-                <div id="about-carousel-card" class="lg:hidden bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 p-6 rounded-xl min-h-[250px] flex flex-col justify-between animate-fade-in-up">
+                <!-- ATUALIZADO: Padding (p-4) e altura mínima (min-h-[200px]) reduzidos -->
+                <div id="about-carousel-card" class="lg:hidden bg-gradient-to-br from-gray-800/20 to-gray-700/20 border border-accent-gold-dark/30 p-4 rounded-xl min-h-[200px] flex flex-col justify-between animate-fade-in-up">
                     <div>
                         <!-- ATUALIZADO: Fonte reduzida no mobile (text-2xl) -->
                         <h3 id="about-carousel-title" class="text-2xl font-bold text-accent-gold mb-6">Carregando...</h3>
@@ -599,6 +608,26 @@
         // Inicializa a seção quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', () => {
             
+            // --- ATUALIZADO: Animações do Hero ao Rolar ---
+            const heroTextContent = document.getElementById('hero-text-content');
+            const heroScrollMask = document.getElementById('hero-scroll-mask'); // A nova máscara preta
+            
+            if (heroTextContent && heroScrollMask) {
+                window.addEventListener('scroll', () => {
+                    const scrollPosition = window.scrollY;
+                    // Define a 'distância' da animação (ex: 500px de scroll)
+                    const animationDistance = 500; 
+                    // Calcula o progresso (de 0.0 a 1.0), travando em 1.0
+                    const progress = Math.min(1, scrollPosition / animationDistance);
+
+                    // ATUALIZADO: Linha abaixo REMOVIDA para manter o texto fixo
+                    // heroTextContent.style.opacity = (1 - progress).toString();
+                    
+                    // Máscara (começa em 0, vai para 1)
+                    heroScrollMask.style.opacity = progress.toString();
+                });
+            }
+
             // --- Inicializador do Carrossel "Áreas de Atuação" ---
             const prevAreaButton = document.getElementById('carousel-prev');
             const nextAreaButton = document.getElementById('carousel-next');
