@@ -155,7 +155,8 @@
             <!-- ATUALIZADO: Adicionado mt-4 no mobile e removido no desktop (md:mt-0) -->
             <nav class="flex items-center gap-4 md:gap-6 mt-4 md:mt-0">
                 <!-- ATUALIZADO: Cor alterada para text-text-white -->
-                <a href="#quem-somos" class="text-xs sm:text-sm font-medium text-text-white transition-colors hover:text-accent-gold">Quem somos</a>
+                <!-- ATUALIZADO: href alterado para #nossa-historia -->
+                <a href="#nossa-historia" class="text-xs sm:text-sm font-medium text-text-white transition-colors hover:text-accent-gold">Quem somos</a>
                 <a href="#area-atuacao" class="text-xs sm:text-sm font-medium text-text-white transition-colors hover:text-accent-gold">Área de atuação</a>
                 <a href="#midia" class="text-xs sm:text-sm font-medium text-text-white transition-colors hover:text-accent-gold">Na Mídia</a>
                 <a href="#contato" class="text-xs sm:text-sm font-medium text-text-white transition-colors hover:text-accent-gold">Contato</a>
@@ -166,7 +167,7 @@
     <!-- ======= Hero Section ======= -->
     <!-- ATUALIZADO: Trocado 'sticky top-0' por 'fixed inset-0' para travar totalmente a seção. -->
     <section class="fixed inset-0 h-screen z-10 animate-fade-in overflow-hidden">
-        
+
         <!-- Vídeo de Fundo -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-1]">
             <source src="imagens/Recepção (1).mp4" type="video/mp4">
@@ -174,14 +175,15 @@
         <!-- Overlay Base (o que já existia) -->
         <div class="absolute inset-0 bg-primary-bg/50 z-0"></div>
         <!-- ATUALIZADO: Nova Máscara para o efeito de scroll (começa 100% transparente) -->
-        <!-- ATUALIZADO: z-index aumentado para 10 -->
-        <div id="hero-scroll-mask" class="absolute inset-0 bg-primary-bg z-10" style="opacity: 0;"></div>
+        <!-- ATUALIZADO: z-index mantido em 10 -->
+        <!-- ATUALIZADO: Adicionado pointer-events-none -->
+        <div id="hero-scroll-mask" class="absolute inset-0 bg-primary-bg z-10 pointer-events-none" style="opacity: 0;"></div>
 
         <!-- Conteúdo -->
         <!-- ATUALIZADO: Adicionado ID 'hero-text-content' -->
         <!-- ATUALIZADO: Adicionado 'flex flex-col justify-center items-center text-center' para centralizar o conteúdo na 'célula' restante -->
-        <!-- ATUALIZADO: z-index do texto diminuído para 5 -->
-        <div id="hero-text-content" class="relative z-5 container mx-auto max-w-7xl px-4 h-full flex flex-col justify-center items-center text-center">
+        <!-- ATUALIZADO: z-index AUMENTADO para 15 (acima da máscara) -->
+        <div id="hero-text-content" class="relative z-15 container mx-auto max-w-7xl px-4 h-full flex flex-col justify-center items-center text-center">
             <!-- ATUALIZADO: Fonte reduzida no mobile (text-3xl) -->
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-8">
                 <span>Somos uma holding com foco no </span>
@@ -190,10 +192,12 @@
             </h1>
             <!-- ATUALIZADO: Fonte reduzida no mobile (text-base) -->
             <p class="text-base md:text-lg text-text-gray max-w-2xl mb-12 mx-auto">Uma holding que reúne empresas atuantes em diversas áreas, com foco no turismo.</p>
-            <!-- ATUALIZADO: Padding do botão reduzido no mobile -->
-            <button class="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-accent-gold-dark to-accent-gold text-black font-bold rounded-full cursor-pointer transition-all duration-300 hover:scale-105">
+            <!-- ATUALIZADO: Button removido, classes movidas para o <a> -->
+            <!-- ATUALIZADO: Adicionado 'inline-block' ao <a> -->
+            <!-- ATUALIZADO: Adicionadas classes de hover para animação -->
+            <a href="#nossa-historia" class="inline-block px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-accent-gold-dark to-accent-gold text-black font-bold rounded-full cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-gold/30">
                 CONHEÇA A RTSC
-            </button>
+            </a>
         </div>
     </section>
 
@@ -202,8 +206,9 @@
     <main class="relative z-20 bg-primary-bg" style="margin-top: 100vh;">
         
         <!-- ======= History Section ======= -->
-        <!-- ATUALIZADO: Padding da seção reduzido no mobile (py-16) -->
-        <section class="container mx-auto max-w-7xl py-16 md:py-24 px-4">
+        <!-- ATUALIZADO: Adicionado id="nossa-historia" -->
+        <!-- ATUALIZADO: Adicionado scroll-mt-28 md:scroll-mt-20 -->
+        <section id="nossa-historia" class="container mx-auto max-w-7xl py-16 md:py-24 px-4 scroll-mt-28 md:scroll-mt-20">
             <!-- ATUALIZADO: layout md:grid-cols-2 já empilha no mobile, correto. -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="animate-slide-in-left">
@@ -228,7 +233,8 @@
 
         <!-- ======= About Section ======= -->
         <!-- ATUALIZADO: Padding da seção reduzido no mobile (py-16) -->
-        <section id="quem-somos" class="container mx-auto max-w-7xl py-16 md:py-24 px-4">
+        <!-- ATUALIZADO: ID alterado para #sobre-rtsc -->
+        <section id="sobre-rtsc" class="container mx-auto max-w-7xl py-16 md:py-24 px-4">
             <div class="text-center mb-16">
                 <!-- ATUALIZADO: Fonte reduzida no mobile (text-3xl) -->
                 <h2 class="text-3xl md:text-4xl font-black mb-4">Sobre a <span class="gradient-text">RTSC</span></h2>
@@ -341,7 +347,8 @@
 
         <!-- ======= Areas Section ======= -->
         <!-- ATUALIZADO: Padding da seção reduzido no mobile (py-16) -->
-        <section id="area-atuacao" class="relative overflow-hidden py-16 md:py-24 px-4">
+        <!-- ATUALIZADO: Adicionado scroll-mt-28 md:scroll-mt-20 -->
+        <section id="area-atuacao" class="relative overflow-hidden py-16 md:py-24 px-4 scroll-mt-28 md:scroll-mt-20">
             
             <div id="area-video-container" class="absolute inset-0 z-0">
                 <!-- ATUALIZADO: Adicionado preload="auto" (primeiro vídeo) -->
@@ -396,7 +403,8 @@
 
         <!-- ======= News Section ======= -->
         <!-- ATUALIZADO: Padding da seção reduzido no mobile (py-16) -->
-        <section id="midia" class="py-16 md:py-24 px-4 bg-gradient-to-b from-primary-bg/50 to-gray-900/30">
+        <!-- ATUALIZADO: Adicionado scroll-mt-28 md:scroll-mt-20 -->
+        <section id="midia" class="py-16 md:py-24 px-4 bg-gradient-to-b from-primary-bg/50 to-gray-900/30 scroll-mt-28 md:scroll-mt-20">
             <div class="container mx-auto max-w-7xl">
                 <div class="text-center mb-16">
                     <!-- ATUALIZADO: Fonte reduzida no mobile (text-3xl) -->
@@ -651,4 +659,10 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
 
